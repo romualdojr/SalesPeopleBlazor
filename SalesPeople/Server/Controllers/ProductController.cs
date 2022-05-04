@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SalesPeople.Server.Data;
-using SalesPeople.Server.Services.ProductService;
+using SalesPeople.Server.Services.ProductServices;
 
 namespace SalesPeople.Server.Controllers
 {
@@ -31,6 +31,13 @@ namespace SalesPeople.Server.Controllers
         {
 
             return Ok(await _productService.GetProductAsync(productId));
+        }
+
+        [HttpGet("category/{categoryUrl}")]
+        public async Task<ActionResult<ServiceResponse<Product>>> GetProductsByCategory(string categoryUrl)
+        {
+
+            return Ok(await _productService.GetProductsByCategoryAsync(categoryUrl));
         }
 
     }

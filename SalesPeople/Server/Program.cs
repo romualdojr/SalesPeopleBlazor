@@ -2,7 +2,8 @@ global using SalesPeople.Shared;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.EntityFrameworkCore;
 using SalesPeople.Server.Data;
-using SalesPeople.Server.Services.ProductService;
+using SalesPeople.Server.Services.CategoryServices;
+using SalesPeople.Server.Services.ProductServices;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,6 +19,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<ICategoryService, CategoryService>();
 
 var app = builder.Build();
 

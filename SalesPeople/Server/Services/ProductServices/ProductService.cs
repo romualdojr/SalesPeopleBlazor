@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SalesPeople.Server.Data;
 
-namespace SalesPeople.Server.Services.ProductService
+namespace SalesPeople.Server.Services.ProductServices
 {
     public class ProductService : IProductService
     {
@@ -35,6 +35,14 @@ namespace SalesPeople.Server.Services.ProductService
             {
                 Data = products
             };
+
+            return response;
+        }
+
+        public async Task<ServiceResponse<List<Product>>> GetProductsByCategoryAsync(string categoryUrl)
+        {
+            var response = new ServiceResponse<List<Product>>();
+            response.Data = await _context.Products.Where(p => p.Category.Url.ToLower().Equals(categoryUrl.ToLower())).ToListAsync();
 
             return response;
         }
