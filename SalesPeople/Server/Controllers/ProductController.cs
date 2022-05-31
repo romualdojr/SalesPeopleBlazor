@@ -39,6 +39,20 @@ namespace SalesPeople.Server.Controllers
 
             return Ok(await _productService.GetProductsByCategoryAsync(categoryUrl));
         }
+        
+        [HttpGet("search/{text}")]
+        public async Task<ActionResult<ServiceResponse<Product>>> SearchProducts(string text)
+        {
+
+            return Ok(await _productService.SearchProducts(text));
+        }
+
+        [HttpGet("searchsuggestions/{text}")]
+        public async Task<ActionResult<ServiceResponse<string>>> SearchSuggestions(string text)
+        {
+
+            return Ok(await _productService.GetProductSearchSuggestions(text));
+        }
 
     }
 }
